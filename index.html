@@ -4,65 +4,493 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Samarshi Dilip Baidya | Developer Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #00d2ff;
+      --secondary-color: #3a0ca3;
+      --accent-color: #f72585;
+      --bg-dark: #0a0a0a;
+      --bg-card: #1a1a1a;
+      --text-light: #f8f9fa;
+      --text-muted: #adb5bd;
+      --border-color: #2d3748;
+    }
+
+    body {
       font-family: 'Inter', sans-serif;
-      background-color: #0f172a;
-      color: #f1f5f9;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
+      color: var(--text-light);
       line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(0, 210, 255, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(247, 37, 133, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      100% { opacity: 0.8; }
+    }
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-20px) translateX(10px); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 2rem;
     }
-    h1, h2 {
-      color: #38bdf8;
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 4rem 0;
+      position: relative;
     }
-    a {
-      color: #facc15;
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      animation: glow 2s ease-in-out infinite alternate;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-img::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
+      to { box-shadow: 0 0 30px rgba(0, 210, 255, 0.8); }
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: slideInUp 1s ease-out;
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: slideInUp 1s ease-out 0.3s both;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 210, 255, 0.1);
+      border-color: var(--primary-color);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    /* Social Links */
+    .socials {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      color: var(--text-light);
       text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      transition: left 0.3s ease;
+      z-index: -1;
     }
-    .container {
-      max-width: 800px;
-      margin: auto;
+
+    .social-link:hover::before {
+      left: 0;
     }
-    .section {
-      margin-top: 3rem;
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
+      border-color: var(--primary-color);
     }
-    .socials a {
-      margin-right: 1rem;
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-title {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+
+    /* Skills */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .skill-tag {
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .socials {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
+  <div class="particles"></div>
+  
   <div class="container">
-    <h1>👋 Hi, I'm Samarshi Dilip Baidya</h1>
-    <p>
-      I'm a passionate Software Developer, Experienced in Flutter, Android, IOS, and Python, currently navigating NodeJs and React, always exploring new technologies and building projects that create impact. I believe in writing clean, efficient, and maintainable code.
-    </p>
+    <header class="header">
+      <div class="profile-img">👨‍💻</div>
+      <h1>Samarshi Dilip Baidya</h1>
+      <p class="tagline">
+        Passionate Software Developer crafting exceptional digital experiences with Flutter, Android, iOS, and Python. Currently exploring NodeJS and React while building impactful projects.
+      </p>
+      
+      <div class="socials">
+        <a href="https://github.com/DreaconWlaker" target="_blank" class="social-link">
+          <span>🐙</span> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/samarshibaidya/" target="_blank" class="social-link">
+          <span>💼</span> LinkedIn
+        </a>
+        <a href="mailto:samarshi19@gmail.com" class="social-link">
+          <span>📧</span> Email
+        </a>
+      </div>
+    </header>
 
-    <div class="socials">
-      <a href="https://github.com/DreaconWlaker" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/samarshibaidya/" target="_blank">LinkedIn</a>
-      <a href="mailto:samarshi19@gmail.com">Email</a>
+    <div class="card fade-in">
+      <h2>🛠️ Technical Skills</h2>
+      <div class="skills">
+        <span class="skill-tag">Flutter</span>
+        <span class="skill-tag">Android</span>
+        <span class="skill-tag">iOS</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Dart</span>
+        <span class="skill-tag">Mobile Development</span>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>🚀 Projects</h2>
-      <ul>
-        <li><strong>Expense Tracker:</strong> Personal project for tracking expenses using Flutter <a href="https://github.com/DreaconWalker/ExpenseTracker">[GitHub]</a></li>
-        <li><strong>Habit Tracker:</strong> Habit Tracker for tracking expenses using Flutter <a href="https://github.com/DreaconWalker/HabitTracker">[GitHub]</a></li>
-        <li><strong>Weather Application:</strong> Weather Tracing app made with Flutter <a href="https://github.com/DreaconWalker/Weather-App">[GitHub]</a></li>
-        <li><strong>News App:</strong> An open api News app made with Flutter <a href="https://github.com/DreaconWalker/News-App">[GitHub]</a></li>
-      </ul>
+    <div class="card fade-in">
+      <h2>🚀 Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3 class="project-title">💰 Expense Tracker</h3>
+          <p class="project-description">Personal expense tracking application built with Flutter, featuring intuitive UI and comprehensive financial management tools.</p>
+          <a href="https://github.com/DreaconWalker/ExpenseTracker" target="_blank" class="project-link">
+            View Project →
+          </a>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">🎯 Habit Tracker</h3>
+          <p class="project-description">Habit tracking application designed to help users build and maintain positive daily routines with Flutter.</p>
+          <a href="https://github.com/DreaconWalker/HabitTracker" target="_blank" class="project-link">
+            View Project →
+          </a>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">🌤️ Weather Application</h3>
+          <p class="project-description">Real-time weather tracking app with beautiful UI and accurate forecasting capabilities using Flutter.</p>
+          <a href="https://github.com/DreaconWalker/Weather-App" target="_blank" class="project-link">
+            View Project →
+          </a>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">📰 News App</h3>
+          <p class="project-description">Modern news application leveraging open APIs to deliver the latest news with a clean, user-friendly interface.</p>
+          <a href="https://github.com/DreaconWalker/News-App" target="_blank" class="project-link">
+            View Project →
+          </a>
+        </div>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>📫 Get in Touch</h2>
-      <p>If you're interested in collaborating, hiring, or just want to chat tech, feel free to reach out!</p>
+    <div class="card fade-in">
+      <h2>📫 Let's Connect</h2>
+      <p>
+        I'm always excited to collaborate on innovative projects, discuss new opportunities, or simply chat about technology. 
+        Whether you're looking to hire talented developers or want to explore potential partnerships, I'd love to hear from you!
+      </p>
     </div>
   </div>
+
+  <script>
+    // Animated particles
+    function createParticles() {
+      const particles = document.querySelector('.particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particles.appendChild(particle);
+      }
+    }
+
+    // Scroll animation
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    }
+
+    // Easter egg - click the profile image 5 times
+    let clickCount = 0;
+    document.querySelector('.profile-img').addEventListener('click', () => {
+      clickCount++;
+      if (clickCount === 5) {
+        const img = document.querySelector('.profile-img');
+        img.style.animation = 'none';
+        img.offsetHeight; // Trigger reflow
+        img.style.animation = 'glow 0.5s ease-in-out 3';
+        img.innerHTML = '🎉';
+        setTimeout(() => {
+          img.innerHTML = '👨‍💻';
+          clickCount = 0;
+        }, 2000);
+      }
+    });
+
+    // Initialize
+    createParticles();
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Initial check
+  </script>
 </body>
 </html>
