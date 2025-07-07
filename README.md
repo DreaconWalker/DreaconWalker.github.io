@@ -18,8 +18,10 @@ I'm a passionate and curious developer focused on creating intuitive, fast, and 
 ## 📌 Featured Projects
 Here are a few highlights from my work:
 
-- 🔧 [**TheDiceApp**](https://github.com/DreaconWalker/diceApp): A short description about what it does and why it's cool  
-- 📱 [**WeatherApp**](https://github.com/DreaconWalker/weatherApp): Brief pitch about the app and your contribution  
+- 🔧 [**Expense Tracker**](https://github.com/DreaconWalker/ExpenseTracker): Tracks your Monthly Expense, shows breakups and gives insights, Ai integration under process  
+- 📱 [**Weather App**](https://github.com/DreaconWalker/weatherApp): Tracks Weather based on city, automatic location edtection under process
+- 🔧 [**Habit Tracker App**](https://github.com/DreaconWalker/HabitTracker): Tracks Habits, marks streak and shows traits in calender 
+- 📱 [**News App**](https://github.com/DreaconWalker/Weather-App): Shows News from open Api's, made with Flutter  
 - ⚙️ Backend Projects in building
 
 > 💬 Want to see more? Check out [my repositories →](https://github.com/DreaconWalker?tab=repositories)
